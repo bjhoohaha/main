@@ -9,8 +9,8 @@
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#setting-up">1. Setting up</a></li>
-<li><a href="#design">2. Design</a>
+<li><a href="#_setting_up">1. Setting up</a></li>
+<li><a href="#_design">2. Design</a>
 <ul class="sectlevel2">
 <li><a href="#Design-Architecture">2.1. Architecture</a></li>
 <li><a href="#Design-Ui">2.2. UI component</a></li>
@@ -20,35 +20,35 @@
 <li><a href="#Design-Commons">2.6. Common classes</a></li>
 </ul>
 </li>
-<li><a href="#implementation">3. Implementation</a>
+<li><a href="#_implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#proposed-undo-redo-feature">3.1. [Proposed] Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
+<li><a href="#_proposed_undoredo_feature">3.1. [Proposed] Undo/Redo feature</a></li>
+<li><a href="#_proposed_data_encryption">3.2. [Proposed] Data Encryption</a></li>
+<li><a href="#_logging">3.3. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
 </ul>
 </li>
-<li><a href="#documentation">4. Documentation</a></li>
-<li><a href="#testing">5. Testing</a></li>
-<li><a href="#dev-ops">6. Dev Ops</a></li>
-<li><a href="#product-scope">Appendix A: Product Scope</a></li>
-<li><a href="#user-stories">Appendix B: User Stories</a></li>
-<li><a href="#use-cases">Appendix C: Use Cases</a></li>
-<li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
-<li><a href="#glossary">Appendix E: Glossary</a></li>
-<li><a href="#product-survey">Appendix F: Product Survey</a></li>
-<li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
+<li><a href="#_documentation">4. Documentation</a></li>
+<li><a href="#_testing">5. Testing</a></li>
+<li><a href="#_dev_ops">6. Dev Ops</a></li>
+<li><a href="#_product_scope">Appendix A: Product Scope</a></li>
+<li><a href="#_user_stories">Appendix B: User Stories</a></li>
+<li><a href="#_use_cases">Appendix C: Use Cases</a></li>
+<li><a href="#_non_functional_requirements">Appendix D: Non Functional Requirements</a></li>
+<li><a href="#_glossary">Appendix E: Glossary</a></li>
+<li><a href="#_product_survey">Appendix F: Product Survey</a></li>
+<li><a href="#_instructions_for_manual_testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
-<li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#saving-data">G.3. Saving data</a></li>
+<li><a href="#_launch_and_shutdown">G.1. Launch and Shutdown</a></li>
+<li><a href="#_deleting_a_person">G.2. Deleting a person</a></li>
+<li><a href="#_saving_data">G.3. Saving data</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting-up"><a class="link" href="#setting-up">1. Setting up</a></h2>
+<h2 id="_setting_up">1. Setting up</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="SettingUp.html">here</a>.</p>
@@ -56,10 +56,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="design"><a class="link" href="#design">2. Design</a></h2>
+<h2 id="_design">2. Design</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">2.1. Architecture</a></h3>
+<h3 id="Design-Architecture">2.1. Architecture</h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ArchitectureDiagram.png" alt="ArchitectureDiagram">
@@ -73,7 +73,7 @@
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<div class="title">Tip</div>
 </td>
 <td class="content">
 The <code>.puml</code> files used to create diagrams in this document can be found in the <a href="https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/">diagrams</a> folder.
@@ -147,7 +147,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div class="title">Figure 2. Class Diagram of the Logic Component</div>
 </div>
-<h4 id="how-the-architecture-components-interact-with-each-other" class="discrete">How the architecture components interact with each other</h4>
+<h4 id="_how_the_architecture_components_interact_with_each_other" class="discrete">How the architecture components interact with each other</h4>
 <div class="paragraph">
 <p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>delete 1</code>.</p>
 </div>
@@ -162,7 +162,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Ui"><a class="link" href="#Design-Ui">2.2. UI component</a></h3>
+<h3 id="Design-Ui">2.2. UI component</h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram">
@@ -193,7 +193,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.3. Logic component</a></h3>
+<h3 id="Design-Logic">2.3. Logic component</h3>
 <div id="fig-LogicClassDiagram" class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
@@ -236,7 +236,7 @@ The following class plays an important role at the architecture level:</p>
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 The lifeline for <code>DeleteCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -246,7 +246,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model component</a></h3>
+<h3 id="Design-Model">2.4. Model component</h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram">
@@ -279,7 +279,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
@@ -291,7 +291,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
+<h3 id="Design-Storage">2.5. Storage component</h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
@@ -316,7 +316,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
+<h3 id="Design-Commons">2.6. Common classes</h3>
 <div class="paragraph">
 <p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
 </div>
@@ -324,15 +324,15 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation"><a class="link" href="#implementation">3. Implementation</a></h2>
+<h2 id="_implementation">3. Implementation</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="proposed-undo-redo-feature"><a class="link" href="#proposed-undo-redo-feature">3.1. [Proposed] Undo/Redo feature</a></h3>
+<h3 id="_proposed_undoredo_feature">3.1. [Proposed] Undo/Redo feature</h3>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.1.1. Proposed Implementation</a></h4>
+<h4 id="_proposed_implementation">3.1.1. Proposed Implementation</h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -385,7 +385,7 @@ Additionally, it implements the following operations:</p>
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the address book state will not be saved into the <code>addressBookStateList</code>.
@@ -405,7 +405,7 @@ If a command fails its execution, it will not call <code>Model#commitAddressBook
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
@@ -425,7 +425,7 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial a
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -440,7 +440,7 @@ The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) b
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
@@ -474,9 +474,9 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="_design_considerations">3.1.2. Design Considerations</h4>
 <div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
+<h5 id="_aspect_how_undo_redo_executes">Aspect: How undo &amp; redo executes</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -509,7 +509,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
+<h5 id="_aspect_data_structure_to_support_the_undoredo_commands">Aspect: Data structure to support the undo/redo commands</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -544,13 +544,13 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="_proposed_data_encryption">3.2. [Proposed] Data Encryption</h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="_logging">3.3. Logging</h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -588,7 +588,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration">3.4. Configuration</h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -596,7 +596,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">4. Documentation</a></h2>
+<h2 id="_documentation">4. Documentation</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Documentation.html">here</a>.</p>
@@ -604,7 +604,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect1">
-<h2 id="testing"><a class="link" href="#testing">5. Testing</a></h2>
+<h2 id="_testing">5. Testing</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Testing.html">here</a>.</p>
@@ -612,7 +612,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">6. Dev Ops</a></h2>
+<h2 id="_dev_ops">6. Dev Ops</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="DevOps.html">here</a>.</p>
@@ -620,7 +620,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect1">
-<h2 id="product-scope"><a class="link" href="#product-scope">Appendix A: Product Scope</a></h2>
+<h2 id="_product_scope">Appendix A: Product Scope</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Target user profile</strong>:</p>
@@ -628,7 +628,43 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist">
 <ul>
 <li>
-<p>has a need to manage a significant number of contacts</p>
+<p>loves to travel frequently</p>
+</li>
+<li>
+<p>travels to many different countries</p>
+</li>
+<li>
+<p>has a need to manage a significant number of contacts from different countries</p>
+</li>
+<li>
+<p>has a need to keep track of travelling expenses</p>
+</li>
+<li>
+<p>lends and pay money to different contacts regularly</p>
+</li>
+<li>
+<p>loves to plan in advance</p>
+</li>
+<li>
+<p>has a need to keep track of different commitments in school</p>
+</li>
+<li>
+<p>love to record its travel itinerary</p>
+</li>
+<li>
+<p>achievements driven</p>
+</li>
+<li>
+<p>has a need to know his/her current progress in completing the achievement</p>
+</li>
+<li>
+<p>motivated to finish his/her accomplishments</p>
+</li>
+<li>
+<p>loves to keep a memory of his/her travels</p>
+</li>
+<li>
+<p>has a need to write down a diary of his/her travel experiences</p>
 </li>
 <li>
 <p>prefer desktop apps over other types</p>
@@ -645,12 +681,12 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Value proposition</strong>: manage contacts faster than a typical mouse/GUI driven app</p>
+<p><strong>Value proposition</strong>: All-in-one travel manager for planning, scheduling, tracking for a user that loves typing commands.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
+<h2 id="_user_stories">Appendix B: User Stories</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
@@ -673,27 +709,63 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">new user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see usage instructions</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">refer to instructions when I forget how to use the App</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">traveller</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">record down all my travelling stories.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">my sweet memories stored</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add a new person</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">student who likes travelling</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">record all my spendings on my trip</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of my budgets</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">delete a person</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">remove entries that I no longer need</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NUS student with unusually high workload</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">have a calendar planner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plan ahead</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">find a person by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate details of persons without having to go through the entire list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">student who needs friends and likes to travel desperately</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">manage my travel itineraries</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of my travel schedule during travels</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">undisciplined individual</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of my expenses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit the accumulation of credit card debts</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">competitive individual</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of my own progress towards different achievements</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">challenge myself</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">student with many friends abroad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">have an Address Book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">contact my friends who are living in that area</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">student who needs friends and likes to travel desperately</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">have an Address Book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep my friends’ contact categorized with different countries</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NUS student with unusually high workload</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">detect conflicts in my calendar schedule</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">know when I&#8217;m free to travel around the world</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">undisciplined individual</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of my expenses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">limit the accumulation of credit card debts</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -715,12 +787,12 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect1">
-<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
+<h2 id="_use_cases">Appendix C: Use Cases</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
+<h3 id="_use_case_delete_person" class="discrete">Use case: Delete person</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -772,10 +844,26 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="paragraph">
 <p><em>{More to be added}</em></p>
 </div>
+<h3 id="_use_case_finance_tracker" class="discrete">Use case: Finance Tracker</h3>
+<div class="paragraph">
+<p><em>{More to be added}</em></p>
+</div>
+<h3 id="_use_case_calendar" class="discrete">Use case: Calendar</h3>
+<div class="paragraph">
+<p><em>{More to be added}</em></p>
+</div>
+<h3 id="_use_case_diary" class="discrete">Use case: Diary</h3>
+<div class="paragraph">
+<p><em>{More to be added}</em></p>
+</div>
+<h3 id="_use_case_itinerary" class="discrete">Use case:  Itinerary</h3>
+<div class="paragraph">
+<p><em>{More to be added}</em></p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></h2>
+<h2 id="_non_functional_requirements">Appendix D: Non Functional Requirements</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -796,7 +884,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect1">
-<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
+<h2 id="_glossary">Appendix E: Glossary</h2>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
@@ -813,7 +901,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
+<h2 id="_product_survey">Appendix F: Product Survey</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Product Name</strong></p>
@@ -850,7 +938,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect1">
-<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
+<h2 id="_instructions_for_manual_testing">Appendix G: Instructions for Manual Testing</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
@@ -859,7 +947,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<div class="title">Note</div>
 </td>
 <td class="content">
 These instructions only provide a starting point for testers to work on; testers are expected to do more <em>exploratory</em> testing.
@@ -868,7 +956,7 @@ These instructions only provide a starting point for testers to work on; testers
 </table>
 </div>
 <div class="sect2">
-<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
+<h3 id="_launch_and_shutdown">G.1. Launch and Shutdown</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -906,7 +994,7 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
+<h3 id="_deleting_a_person">G.2. Deleting a person</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -938,7 +1026,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
+<h3 id="_saving_data">G.3. Saving data</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -958,4 +1046,12 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-09-13 07:09:44 UTC</div></div></div></body></html>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2019-10-02 16:40:54 +0800
+</div>
+</div>
+</body>
+</html>

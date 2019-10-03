@@ -27,7 +27,6 @@ import seedu.main.commons.core.Version;
 import seedu.main.commons.exceptions.DataConversionException;
 import seedu.main.commons.util.ConfigUtil;
 import seedu.main.commons.util.StringUtil;
-import seedu.main.ui.Ui;
 
 
 /**

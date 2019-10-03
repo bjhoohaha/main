@@ -3,34 +3,34 @@
 
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
-Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Logic" as addressBookLogic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
-Participant ":Storage" as storage STORAGE_COLOR
+Participant ":Storage" as addressBookStorage STORAGE_COLOR
 
 user -[USER_COLOR]> ui : "delete 1"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("delete 1")
-activate logic LOGIC_COLOR
+ui -[UI_COLOR]> addressBookLogic : execute("delete 1")
+activate addressBookLogic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : deletePerson(p)
+addressBookLogic -[LOGIC_COLOR]> model : deletePerson(p)
 activate model MODEL_COLOR
 
-model -[MODEL_COLOR]-> logic
+model -[MODEL_COLOR]-> addressBookLogic
 deactivate model
 
-logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
-activate storage STORAGE_COLOR
+addressBookLogic -[LOGIC_COLOR]> addressBookStorage : saveAddressBook(addressBook)
+activate addressBookStorage STORAGE_COLOR
 
-storage -[STORAGE_COLOR]> storage : Save to file
-activate storage STORAGE_COLOR_T1
-deactivate storage
+addressBookStorage -[STORAGE_COLOR]> addressBookStorage : Save to file
+activate addressBookStorage STORAGE_COLOR_T1
+deactivate addressBookStorage
 
-storage --[STORAGE_COLOR]> logic
-deactivate storage
+addressBookStorage --[STORAGE_COLOR]> addressBookLogic
+deactivate addressBookStorage
 
-logic --[LOGIC_COLOR]> ui
-deactivate logic
+addressBookLogic --[LOGIC_COLOR]> ui
+deactivate addressBookLogic
 
 ui--[UI_COLOR]> user
 deactivate ui

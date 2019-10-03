@@ -7,8 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.main.commons.core.LogsCenter;
+import seedu.main.ui.UiPart;
 
 /**
  * Panel containing the list of persons.

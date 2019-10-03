@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.main.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -9,9 +9,9 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.main.commons.core.GuiSettings;
+import seedu.main.commons.core.LogsCenter;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,60 +20,60 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
-    private final UserPrefs userPrefs;
+    private final AddressBookUserPrefs addressBookUserPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook and addressBookUserPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyAddressBookUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
-        this.userPrefs = new UserPrefs(userPrefs);
+        this.addressBookUserPrefs = new AddressBookUserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new AddressBookUserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    //=========== AddressBookUserPrefs =================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public void setAddressBookUserPrefs(ReadOnlyAddressBookUserPrefs addressBookUserPrefs) {
+        requireNonNull(addressBookUserPrefs);
+        this.addressBookUserPrefs.resetData(addressBookUserPrefs);
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public ReadOnlyAddressBookUserPrefs getAddressBookUserPrefs() {
+        return addressBookUserPrefs;
     }
 
     @Override
     public GuiSettings getGuiSettings() {
-        return userPrefs.getGuiSettings();
+        return addressBookUserPrefs.getGuiSettings();
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
-        userPrefs.setGuiSettings(guiSettings);
+        addressBookUserPrefs.setGuiSettings(guiSettings);
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return addressBookUserPrefs.getAddressBookFilePath();
     }
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        addressBookUserPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -144,7 +144,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
+                && addressBookUserPrefs.equals(other.addressBookUserPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
 

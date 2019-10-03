@@ -8,7 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
+import seedu.main.commons.core.LogsCenter;
+import seedu.main.ui.UiPart;
 
 /**
  * Controller for a help page

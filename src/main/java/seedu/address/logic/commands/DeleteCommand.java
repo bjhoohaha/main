@@ -4,16 +4,17 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.main.commons.core.Messages;
+import seedu.main.commons.core.index.Index;
+import seedu.main.logic.commands.CommandResult;
+import seedu.main.logic.commands.exceptions.CommandException;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteCommand extends AddressBookCommand {
 
     public static final String COMMAND_WORD = "delete";
 

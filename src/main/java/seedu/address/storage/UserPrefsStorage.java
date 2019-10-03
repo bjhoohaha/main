@@ -4,33 +4,32 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
-
+import seedu.address.model.AddressBookUserPrefs;
+import seedu.address.model.ReadOnlyAddressBookUserPrefs;
+import seedu.main.commons.exceptions.DataConversionException;
 /**
- * Represents a storage for {@link seedu.address.model.UserPrefs}.
+ * Represents a addressBookStorage for {@link AddressBookUserPrefs}.
  */
 public interface UserPrefsStorage {
 
     /**
-     * Returns the file path of the UserPrefs data file.
+     * Returns the file path of the AddressBookUserPrefs data file.
      */
     Path getUserPrefsFilePath();
 
     /**
-     * Returns UserPrefs data from storage.
-     *   Returns {@code Optional.empty()} if storage file is not found.
-     * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * Returns AddressBookUserPrefs data from addressBookStorage.
+     *   Returns {@code Optional.empty()} if addressBookStorage file is not found.
+     * @throws DataConversionException if the data in addressBookStorage is not in the expected format.
+     * @throws IOException if there was any problem when reading from the addressBookStorage.
      */
-    Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
+    Optional<AddressBookUserPrefs> readUserPrefs() throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link seedu.address.model.ReadOnlyUserPrefs} to the storage.
+     * Saves the given {@link seedu.address.model.ReadOnlyAddressBookUserPrefs} to the addressBookStorage.
      * @param userPrefs cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
+    void saveUserPrefs(ReadOnlyAddressBookUserPrefs userPrefs) throws IOException;
 
 }

@@ -4,8 +4,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.main.commons.core.GuiSettings;
 
 /**
  * The API of the Model component.
@@ -15,14 +15,14 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
+     * Replaces user prefs data with the data in {@code addressBookUserPrefs}.
      */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+    void setAddressBookUserPrefs(ReadOnlyAddressBookUserPrefs addressBookUserPrefs);
 
     /**
      * Returns the user prefs.
      */
-    ReadOnlyUserPrefs getUserPrefs();
+    ReadOnlyAddressBookUserPrefs getAddressBookUserPrefs();
 
     /**
      * Returns the user prefs' GUI settings.

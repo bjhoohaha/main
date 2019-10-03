@@ -14,9 +14,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.main.commons.core.GuiSettings;
 
 public class ModelManagerTest {
 
@@ -24,28 +24,28 @@ public class ModelManagerTest {
 
     @Test
     public void constructor() {
-        assertEquals(new UserPrefs(), modelManager.getUserPrefs());
+        assertEquals(new AddressBookUserPrefs(), modelManager.getAddressBookUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
     }
 
     @Test
     public void setUserPrefs_nullUserPrefs_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookUserPrefs(null));
     }
 
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
-        UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
-        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
-        modelManager.setUserPrefs(userPrefs);
-        assertEquals(userPrefs, modelManager.getUserPrefs());
+        AddressBookUserPrefs addressBookUserPrefs = new AddressBookUserPrefs();
+        addressBookUserPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        addressBookUserPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
+        modelManager.setAddressBookUserPrefs(addressBookUserPrefs);
+        assertEquals(addressBookUserPrefs, modelManager.getAddressBookUserPrefs());
 
-        // Modifying userPrefs should not modify modelManager's userPrefs
-        UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
-        assertEquals(oldUserPrefs, modelManager.getUserPrefs());
+        // Modifying addressBookUserPrefs should not modify modelManager's addressBookUserPrefs
+        AddressBookUserPrefs oldAddressBookUserPrefs = new AddressBookUserPrefs(addressBookUserPrefs);
+        addressBookUserPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        assertEquals(oldAddressBookUserPrefs, modelManager.getAddressBookUserPrefs());
     }
 
     @Test
@@ -97,11 +97,11 @@ public class ModelManagerTest {
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
-        UserPrefs userPrefs = new UserPrefs();
+        AddressBookUserPrefs addressBookUserPrefs = new AddressBookUserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(addressBook, addressBookUserPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, addressBookUserPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,19 +114,19 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, addressBookUserPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, addressBookUserPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        // different userPrefs -> returns false
-        UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        // different addressBookUserPrefs -> returns false
+        AddressBookUserPrefs differentAddressBookUserPrefs = new AddressBookUserPrefs();
+        differentAddressBookUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentAddressBookUserPrefs)));
     }
 }

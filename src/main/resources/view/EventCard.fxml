@@ -11,15 +11,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" prefHeight="105.0" prefWidth="194.0" GridPane.columnIndex="0">
       <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
+        <Insets bottom="5" left="15" right="5" top="5"/>
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5">
         <ImageView fx:id="checkBox" fitHeight="17.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
@@ -28,7 +27,7 @@
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
+            <Region fx:constant="USE_PREF_SIZE"/>
           </minWidth>
         </Label>
         <Label fx:id="title" lineSpacing="2.0" prefHeight="20.0" prefWidth="56.0" styleClass="cell_big_label" text="\\\$title" underline="true" wrapText="true">
@@ -37,7 +36,29 @@
                </font>
             </Label>
       </HBox>
-         <VBox prefHeight="0.0" prefWidth="130.0">
+      <VBox prefHeight="0.0" prefWidth="130.0">
+        <children>
+          <HBox prefHeight="14.0" prefWidth="128.0">
+            <children>
+              <Label text="⏰TIME: ">
+                <font>
+                  <Font name="Chalkboard" size="13.0"/>
+                </font>
+              </Label>
+              <Label fx:id="time" prefHeight="17.0" prefWidth="57.0" styleClass="cell_small_label" text="\\\$time"/>
+            </children>
+          </HBox>
+          <HBox prefHeight="5.0" prefWidth="129.0">
+            <children>
+              <Label text="📍LOCATION: ">
+                <font>
+                  <Font name="Chalkboard" size="13.0"/>
+                </font>
+              </Label>
+              <Label fx:id="loc" styleClass="cell_small_label" text="\\\$loc"/>
+            </children>
+          </HBox>
+          <HBox prefHeight="10.0" prefWidth="134.0">
             <children>
                <HBox prefHeight="14.0" prefWidth="128.0">
                   <children>
@@ -80,10 +101,12 @@
                   </children>
                </HBox>
             </children>
-         </VBox>
+          </HBox>
+        </children>
+      </VBox>
     </VBox>
     <rowConstraints>
-      <RowConstraints />
+      <RowConstraints/>
     </rowConstraints>
   </GridPane>
 </HBox>

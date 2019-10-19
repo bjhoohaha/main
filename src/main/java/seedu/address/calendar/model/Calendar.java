@@ -40,4 +40,5 @@ public class Calendar {
     public void completeUpdate() {
         hasVisibleUpdates = false;
     }
+
 }

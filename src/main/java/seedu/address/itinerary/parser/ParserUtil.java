@@ -1,12 +1,15 @@
 package seedu.address.itinerary.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.itinerary.model.Event.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.PageType;
-
 import static java.util.Objects.requireNonNull;
+
+import seedu.address.itinerary.model.Event.Description;
+import seedu.address.itinerary.model.Event.Location;
+import seedu.address.itinerary.model.Event.Time;
+import seedu.address.itinerary.model.Event.Title;
+import seedu.address.ui.PageType;
+import seedu.main.commons.core.index.Index;
+import seedu.main.commons.util.StringUtil;
+import seedu.main.logic.parser.exceptions.ParseException;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -18,6 +21,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {

@@ -1,8 +1,12 @@
 package seedu.address.itinerary.parser;
 
-import seedu.address.logic.parser.Prefix;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
-import java.util.*;
+import seedu.address.logic.parser.Prefix;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -13,7 +17,9 @@ import java.util.*;
  */
 public class ArgumentMultimap {
 
-    /** Prefixes mapped to their respective arguments**/
+    /**
+     * Prefixes mapped to their respective arguments
+     **/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
     /**

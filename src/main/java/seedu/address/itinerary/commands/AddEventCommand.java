@@ -1,11 +1,11 @@
 package seedu.address.itinerary.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.itinerary.model.Event.Event;
 import seedu.address.itinerary.model.Model;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-
-import static java.util.Objects.requireNonNull;
+import seedu.main.logic.commands.CommandResult;
+import seedu.main.logic.commands.exceptions.CommandException;
 
 /**
  * add event command for itinerary.

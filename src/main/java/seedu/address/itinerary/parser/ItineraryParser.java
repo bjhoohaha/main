@@ -1,13 +1,18 @@
 package seedu.address.itinerary.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.main.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-import seedu.address.itinerary.commands.*;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.itinerary.commands.AddEventCommand;
+import seedu.address.itinerary.commands.Command;
+import seedu.address.itinerary.commands.DeleteEventCommand;
+import seedu.address.itinerary.commands.ExitCommand;
+import seedu.address.itinerary.commands.GoToCommand;
+import seedu.address.itinerary.commands.HelpCommand;
+import seedu.address.itinerary.commands.SummaryCommand;
+import seedu.main.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
@@ -41,8 +46,8 @@ public class ItineraryParser {
             case AddEventCommand.COMMAND_WORD:
                 return new AddEventCommandParser().parse(arguments);
 
-            case DeleteEventCommand.COMMAND_WORD:
-                return new DeleteEventCommandParser().parse(arguments);
+        case DeleteEventCommand.COMMAND_WORD:
+            return new DeleteEventCommandParser().parse(arguments);
 
             case DoneEventCommand.COMMAND_WORD:
                 return new DoneEventCommandParser().parse(arguments);
@@ -50,18 +55,18 @@ public class ItineraryParser {
             case SummaryCommand.COMMAND_WORD:
                 return new SummaryCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            case GoToCommand.COMMAND_WORD:
-                return new GoToParser().parse(arguments);
+        case GoToCommand.COMMAND_WORD:
+            return new GoToParser().parse(arguments);
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            default:
-                throw new ParseException("I know you like travelling but the input command is out of this "
-                        + "world! :3");
+        default:
+            throw new ParseException("I know you like travelling but the input command is out of this "
+                    + "world! :3");
         }
     }
 

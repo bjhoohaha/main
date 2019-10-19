@@ -16,6 +16,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
+/**
+ * A utility class to help with building EditPersonDescriptor objects.
+ */
 public class EditPersonDescriptorTest {
 
     @Test

@@ -1,7 +1,7 @@
 package seedu.address.itinerary.commands;
 
 import seedu.address.itinerary.model.Model;
-import seedu.address.logic.commands.CommandResult;
+import seedu.main.logic.commands.CommandResult;
 
 /**
  * Terminates the program.

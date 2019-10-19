@@ -2,9 +2,8 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
+import seedu.main.commons.exceptions.IllegalValueException;
 
 /**
  * Jackson-friendly version of {@link Tag}.
@@ -34,7 +33,7 @@ class JsonAdaptedTag {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted tag object into the addressBookModel's {@code Tag} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */

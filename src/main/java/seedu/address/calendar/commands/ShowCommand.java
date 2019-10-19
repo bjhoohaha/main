@@ -3,7 +3,7 @@ package seedu.address.calendar.commands;
 import seedu.address.calendar.model.Calendar;
 import seedu.address.calendar.model.Month;
 import seedu.address.calendar.model.MonthOfYear;
-import seedu.address.logic.commands.CommandResult;
+import seedu.main.logic.commands.CommandResult;
 
 /**
  * Shows user the his/her calendar for the specified month.
@@ -25,4 +25,5 @@ public class ShowCommand extends Command {
         calendar.updateMonthShown(requestedMonth);
         return new CommandResult(SHOWING_REQUESTED_MESSAGE);
     }
+
 }

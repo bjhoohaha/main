@@ -1,9 +1,9 @@
 package seedu.address.itinerary.commands;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.itinerary.model.Model;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.main.commons.core.index.Index;
+import seedu.main.logic.commands.CommandResult;
+import seedu.main.logic.commands.exceptions.CommandException;
 
 public class DeleteEventCommand extends Command {
     public static final String COMMAND_WORD = "delete";

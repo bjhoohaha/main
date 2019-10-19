@@ -1,9 +1,9 @@
 package seedu.address.itinerary.commands;
 
 import seedu.address.itinerary.model.Model;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.ui.PageManager;
 import seedu.address.ui.PageType;
+import seedu.main.logic.commands.CommandResult;
 
 public class GoToCommand extends Command {
     public static final String COMMAND_WORD = "goto";

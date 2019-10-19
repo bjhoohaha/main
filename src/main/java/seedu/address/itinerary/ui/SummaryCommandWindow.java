@@ -1,23 +1,20 @@
 package seedu.address.itinerary.ui;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.itinerary.model.Itinerary;
 import seedu.address.ui.UiPart;
-
-import java.util.logging.Logger;
+import seedu.main.commons.core.LogsCenter;
 
 public class SummaryCommandWindow extends UiPart<Stage> {
-    Itinerary itinerary = new Itinerary();
-
-    public final String SUMMARY_MESSAGE = "You current have " + itinerary.getEventList().size()
-            + " events in your list.";
-
     private static final Logger logger = LogsCenter.getLogger(SummaryCommandWindow.class);
     private static final String FXML = "SummaryCommandWindow.fxml";
-
+    Itinerary itinerary = new Itinerary();
+    public final String SUMMARY_MESSAGE = "You current have " + itinerary.getEventList().size()
+            + " events in your list.";
     @FXML
     private Label summaryMessage;
 
@@ -40,21 +37,21 @@ public class SummaryCommandWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
-     * @throws IllegalStateException
-     * <ul>
-     *     <li>
-     *         if this method is called on a thread other than the JavaFX Application Thread.
-     *     </li>
-     *     <li>
-     *         if this method is called during animation or layout processing.
-     *     </li>
-     *     <li>
-     *         if this method is called on the primary stage.
-     *     </li>
-     *     <li>
-     *         if {@code dialogStage} is already showing.
-     *     </li>
-     * </ul>
+     *
+     * @throws IllegalStateException <ul>
+     *                               <li>
+     *                               if this method is called on a thread other than the JavaFX Application Thread.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called during animation or layout processing.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called on the primary stage.
+     *                               </li>
+     *                               <li>
+     *                               if {@code dialogStage} is already showing.
+     *                               </li>
+     *                               </ul>
      */
     public void show() {
         logger.fine("Showing summary page about the application.");

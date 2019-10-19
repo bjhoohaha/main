@@ -1,8 +1,8 @@
 package seedu.address.calendar.ui;
 
 import javafx.scene.control.TextField;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.main.logic.commands.exceptions.CommandException;
+import seedu.main.logic.parser.exceptions.ParseException;
 
 public class CommandBox {
     private TextField commandBox;

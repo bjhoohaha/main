@@ -1,29 +1,32 @@
 package seedu.address.itinerary.ui;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.itinerary.commands.Command;
 import seedu.address.itinerary.model.Model;
 import seedu.address.itinerary.parser.ItineraryParser;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.*;
-
-import java.util.logging.Logger;
+import seedu.address.logic.AddressBookLogic;
+import seedu.address.ui.CommandBox;
+import seedu.address.ui.Page;
+import seedu.address.ui.PageType;
+import seedu.address.ui.ResultDisplay;
+import seedu.address.ui.UiPart;
+import seedu.main.commons.core.LogsCenter;
+import seedu.main.logic.commands.CommandResult;
+import seedu.main.logic.commands.exceptions.CommandException;
+import seedu.main.logic.parser.exceptions.ParseException;
 
 public class ItineraryPage extends UiPart<VBox> implements Page {
     private final static PageType pageType = PageType.ITINERARY;
     private final static String fxmlWindow = "ItineraryWindow.fxml";
-
+    private final Logger logger = LogsCenter.getLogger(getClass());
     private ResultDisplay resultDisplay;
     private EventPanel eventPanel;
-    private final Logger logger = LogsCenter.getLogger(getClass());
     private ItineraryParser itineraryParser;
     private Model model;
 
@@ -93,7 +96,7 @@ public class ItineraryPage extends UiPart<VBox> implements Page {
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.address.logic.Logic#execute(String)
+     * @see AddressBookLogic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {

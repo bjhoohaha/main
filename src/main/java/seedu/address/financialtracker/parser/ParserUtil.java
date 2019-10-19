@@ -2,13 +2,12 @@ package seedu.address.financialtracker.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.financialtracker.model.expense.Amount;
-import seedu.address.financialtracker.model.expense.Country;
-import seedu.address.financialtracker.model.expense.Description;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.PageType;
+import seedu.address.financialtracker.Model.Expense.Amount;
+import seedu.address.financialtracker.Model.Expense.Country;
+import seedu.address.financialtracker.Model.Expense.Description;
+import seedu.main.commons.core.index.Index;
+import seedu.main.commons.util.StringUtil;
+import seedu.main.logic.parser.exceptions.ParseException;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -20,6 +19,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -73,16 +73,5 @@ public class ParserUtil {
             throw new ParseException(Country.MESSAGE_CONSTRAINTS);
         }
         return new Country(trimmedCountry);
-    }
-
-    public static PageType parsePageType(String pageType) throws ParseException {
-        requireNonNull(pageType);
-        String trimmedPageType = pageType.trim();
-        try {
-            PageType requestedPage = PageType.valueOf(trimmedPageType.toUpperCase());
-            return requestedPage;
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(PageType.MESSAGE_CONSTRAINTS);
-        }
     }
 }

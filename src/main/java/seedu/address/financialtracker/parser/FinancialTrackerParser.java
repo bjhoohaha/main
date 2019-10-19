@@ -1,7 +1,7 @@
 package seedu.address.financialtracker.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.main.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.main.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,10 +10,10 @@ import seedu.address.financialtracker.commands.AddFinCommand;
 import seedu.address.financialtracker.commands.Command;
 import seedu.address.financialtracker.commands.DeleteFinCommand;
 import seedu.address.financialtracker.commands.ExitCommand;
+import seedu.address.financialtracker.commands.MainCommand;
 import seedu.address.financialtracker.commands.SummaryCommand;
-import seedu.address.logic.commands.GoToCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.main.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
@@ -41,6 +41,7 @@ public class FinancialTrackerParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
         case AddFinCommand.COMMAND_WORD:
             return new AddFinCommandParser().parse(arguments);
 
@@ -50,8 +51,8 @@ public class FinancialTrackerParser {
         case SummaryCommand.COMMAND_WORD:
             return new SummaryCommand();
 
-        case GoToCommand.COMMAND_WORD:
-            return new GoToCommandParser().parse(arguments);
+        case MainCommand.COMMAND_WORD:
+            return new MainCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

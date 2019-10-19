@@ -1,8 +1,6 @@
 package seedu.address.itinerary.model;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import seedu.address.itinerary.model.Event.Event;
+import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
 
@@ -13,8 +11,8 @@ public class Model {
     /** {@code Predicate} that always evaluate to true */
     public Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
-    private Itinerary itinerary;
     private final FilteredList<Event> filteredEvents;
+    private Itinerary itinerary;
 
     public Model() {
         this.itinerary = new Itinerary();

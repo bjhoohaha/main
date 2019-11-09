@@ -7,12 +7,6 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import seedu.address.address.model.AddressBook;
-import seedu.address.address.model.AddressBookModelManager;
-import seedu.address.address.model.ReadOnlyAddressBook;
-import seedu.address.address.model.util.SampleDataUtil;
-import seedu.address.address.storage.AddressBookStorage;
-import seedu.address.address.storage.JsonAddressBookStorage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
@@ -22,13 +16,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.UserPrefsModelManager;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -44,7 +33,7 @@ public class MainApp extends Application {
 
     protected Ui ui;
     protected Logic logic;
-    protected Storage storage;
+    protected UserPrefsStorage storage;
     protected Model model;
     protected Config config;
 
@@ -58,48 +47,14 @@ public class MainApp extends Application {
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
-        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
-        UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        //add more storage here
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        //overload storage manager
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        storage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
+        UserPrefs userPrefs = initPrefs(storage);
 
         initLogging(config);
 
-        //model should now include all relevant models
-        //use of a model manager to get different models from different pages
-        model = initModelManager(storage, userPrefs);
-
-        //contain different logic: mainLogic + addressBookLogic
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(userPrefs);
 
         ui = new UiManager(logic);
-    }
-
-    /**
-     * Returns a {@code AddressBookModelManager} with the data from {@code storage}'s address book and {@code userPrefs}
-     * .<br> The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
-     */
-    private ModelManager initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        }
-        return new ModelManager(new UserPrefsModelManager(userPrefs),
-                                new AddressBookModelManager(initialData, userPrefs));
     }
 
     private void initLogging(Config config) {

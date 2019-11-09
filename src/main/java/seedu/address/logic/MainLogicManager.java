@@ -9,8 +9,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.MainParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.UserPrefsModel;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.model.UserPrefsModelManager;
 
 /**
  * Logic Manager for the main page.
@@ -21,13 +22,10 @@ public class MainLogicManager implements MainLogic {
 
     private final UserPrefsModel userPrefsModel;
 
-    private final UserPrefsStorage userPrefsStorage;
-
     private final MainParser mainParser;
 
-    public MainLogicManager(UserPrefsModel userPrefsModel, UserPrefsStorage userPrefsStorage) {
-        this.userPrefsModel = userPrefsModel;
-        this.userPrefsStorage = userPrefsStorage;
+    public MainLogicManager(UserPrefs userPrefs) {
+        this.userPrefsModel = new UserPrefsModelManager(userPrefs);
         this.mainParser = new MainParser();
     }
 

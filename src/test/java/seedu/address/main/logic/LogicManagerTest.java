@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.address.logic.AddressBookLogic;
+import seedu.address.address.logic.AddressBookLogicManager;
 import seedu.address.address.model.AddressBookModel;
 import seedu.address.address.model.AddressBookModelManager;
 import seedu.address.address.storage.JsonAddressBookStorage;
@@ -49,28 +50,7 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        logicManager = new LogicManager(model, storage);
-    }
-
-    @Test
-    public void getStorage_throwsNullPointerException() {
-        assertEquals(null, new LogicManager(model, null).getStorage());
-    }
-
-    @Test
-    public void getAddressBookLogic_equals() {
-        //no changes to address book logic
-        AddressBookLogic addressBookLogic = logicManager.getAddressBookLogic();
-        assertEquals(Paths.get("addressbook.json"), logicManager.getAddressBookLogic().getAddressBookFilePath());
-
-        assertEquals(1, logicManager.getAddressBookLogic().getFilteredPersonList().size());
-        assertEquals(new AddressBookBuilder().withPerson(new PersonBuilder().build()).build(),
-                logicManager.getAddressBookLogic().getAddressBook());
-    }
-
-    @Test
-    public void getStorage_equals() {
-        assertEquals(storage, logicManager.getStorage());
+        logicManager = new LogicManager(userPrefs);
     }
 
     @Test

@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,7 +54,7 @@ public class AddressBookLogicManagerTest {
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        addressBookLogic = new AddressBookLogicManager(addressBookModel, addressBookStorage);
+        addressBookLogic = new AddressBookLogicManager(new UserPrefsStub());
 
     }
 
@@ -83,7 +84,7 @@ public class AddressBookLogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        addressBookLogic = new AddressBookLogicManager(addressBookModel, addressBookStorage);
+        addressBookLogic = new AddressBookLogicManager(new UserPrefsStub());
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
@@ -91,8 +92,9 @@ public class AddressBookLogicManagerTest {
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         AddressBookModelManager expectedModel = new AddressBookModelManager();
         expectedModel.addPerson(expectedPerson);
-        String expectedMessage = AddressBookLogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        String expectedMessage = "This person already exists in the address book";
+        //String expectedMessage = AddressBookLogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage);
     }
 
     @Test
@@ -171,6 +173,13 @@ public class AddressBookLogicManagerTest {
         @Override
         public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    private class UserPrefsStub extends UserPrefs {
+        @Override
+        public Path getAddressBookFilePath() {
+            return Paths.get("addressbook.json");
         }
     }
 }

@@ -13,7 +13,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.Logic;
+import seedu.address.logic.GuiSettingsLogic;
 
 /**
  * A singleton task that handles all UI for page navigation. It must be initialised using {@code getInstance} before
@@ -23,10 +23,10 @@ public class PageManager {
     private static List<Page> pages;
     private static Scene commonScene;
     private static Stage primaryStage;
-    private static Logic guiSettingsLogic;
+    private static GuiSettingsLogic guiSettingsLogic;
     private static Optional<PageManager> pageManager = Optional.empty();
     // prevent multiple instances of pages
-    private PageManager(Stage primaryStage, Scene commonScene, Logic guiSettingsLogic, Page... pages) {
+    private PageManager(Stage primaryStage, Scene commonScene, GuiSettingsLogic guiSettingsLogic, Page... pages) {
         this.primaryStage = primaryStage;
         this.commonScene = commonScene;
         this.guiSettingsLogic = guiSettingsLogic;
@@ -35,7 +35,7 @@ public class PageManager {
     }
 
     public static PageManager getInstance(Stage primaryStage, Scene commonScene,
-                                          Logic guiSettingsLogic, Page... pages) {
+                                          GuiSettingsLogic guiSettingsLogic, Page... pages) {
         pageManager = Optional.of(new PageManager(primaryStage, commonScene, guiSettingsLogic, pages));
         return pageManager.get();
     }

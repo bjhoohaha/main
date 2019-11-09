@@ -7,7 +7,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.diaryfeature.logic.DiaryBookLogic;
 import seedu.address.financialtracker.logic.FinancialTrackerLogic;
 import seedu.address.itinerary.logic.ItineraryLogic;
-import seedu.address.storage.Storage;
 
 
 /**
@@ -15,8 +14,6 @@ import seedu.address.storage.Storage;
  */
 
 public interface Logic extends GuiSettingsLogic {
-
-    Storage getStorage();
 
     /**
      * Gets address book logic.
@@ -52,14 +49,14 @@ public interface Logic extends GuiSettingsLogic {
      * @return Itinerary logic
      */
     ItineraryLogic getItineraryLogic();
-    
+
     /**
      * Gets financial tracker logic.
      *
      * @return Financial tracker logic
      */
     FinancialTrackerLogic getFinancialTrackerLogic();
-    
+
     /**
      * Gets main logic.
      *

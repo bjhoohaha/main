@@ -1,20 +1,19 @@
 package seedu.address.logic;
 
-import java.util.logging.Logger;
+import java.util.function.Supplier;
 
 import seedu.address.achievements.logic.AchievementsLogic;
 import seedu.address.achievements.logic.AchievementsLogicManager;
+import seedu.address.achievements.model.StatisticsModel;
+import seedu.address.achievements.model.StatisticsModelManager;
 import seedu.address.address.logic.AddressBookLogic;
 import seedu.address.address.logic.AddressBookLogicManager;
 import seedu.address.calendar.logic.CalendarLogic;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.diaryfeature.logic.DiaryBookLogic;
 import seedu.address.financialtracker.logic.FinancialTrackerLogic;
 import seedu.address.itinerary.logic.ItineraryLogic;
-import seedu.address.model.Model;
-import seedu.address.model.UserPrefsModel;
-import seedu.address.storage.Storage;
+import seedu.address.model.UserPrefs;
 
 /**
  * The main AddressBookLogicManager of the app.
@@ -23,30 +22,31 @@ public class LogicManager implements Logic {
 
     private AddressBookLogic addressBookLogic;
     private AchievementsLogic achievementsLogic;
-    private UserPrefsModel userPrefsModel;
+    private UserPrefs userPrefs;
     private DiaryBookLogic diaryLogic;
     private CalendarLogic calendarLogic;
     private FinancialTrackerLogic financialTrackerLogic;
     private ItineraryLogic itineraryLogic;
     private MainLogic mainLogic;
-    private Storage storage;
 
-    public LogicManager(Model model, Storage storage) {
-        // overloaded AddressBook Logic Manager to pass main model in
-        // main model is used to save gui settings
-        this.userPrefsModel = model.getUserPrefsModel();
-        this.addressBookLogic = new AddressBookLogicManager(model.getAddressBookModel(), storage);
-        this.achievementsLogic = new AchievementsLogicManager(model.statisticsModelSupplier());
-        this.mainLogic = new MainLogicManager(userPrefsModel, storage);
+    public LogicManager(UserPrefs userPrefs) {
+        this.userPrefs = userPrefs;
+        this.addressBookLogic = new AddressBookLogicManager(userPrefs);
+        this.mainLogic = new MainLogicManager(userPrefs);
         this.diaryLogic = new DiaryBookLogic();
         this.calendarLogic = new CalendarLogic();
         this.financialTrackerLogic = new FinancialTrackerLogic();
         this.itineraryLogic = new ItineraryLogic();
-        this.storage = storage;
-    }
-
-    public Storage getStorage() {
-        return storage;
+            this.achievementsLogic = new AchievementsLogicManager(new Supplier<StatisticsModel>() {
+                @Override
+                public StatisticsModel get() {
+                    return new StatisticsModelManager(addressBookLogic.getStatistics(),
+                            calendarLogic.getStatistics(),
+                            diaryLogic.getStatistics(),
+                            financialTrackerLogic.getStatistics(),
+                            itineraryLogic.getStatistics());
+                }
+            });
     }
 
     @Override
@@ -77,7 +77,7 @@ public class LogicManager implements Logic {
     public ItineraryLogic getItineraryLogic() {
         return this.itineraryLogic;
     }
-    
+
     @Override
     public MainLogic getMainLogic() {
         return this.mainLogic;
@@ -85,11 +85,11 @@ public class LogicManager implements Logic {
 
     @Override
     public GuiSettings getGuiSettings() {
-        return userPrefsModel.getGuiSettings();
+        return userPrefs.getGuiSettings();
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        userPrefsModel.setGuiSettings(guiSettings);
+        userPrefs.setGuiSettings(guiSettings);
     }
 }

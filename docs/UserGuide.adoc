@@ -21,6 +21,7 @@ Team: *T17-2*
 
 *Content*
 
+//Welcome
 
 == Introduction
 //tag::intro

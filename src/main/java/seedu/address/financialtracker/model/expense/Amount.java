@@ -21,7 +21,7 @@ public class Amount {
     }
 
     /**
-     * Format the amount string such that it always has tailing 2 decimal zeros.
+     * Formats the amount string such that it always has tailing 2 decimal zeros.
      */
     public String amountFormat(String amount) {
         int dotIndex = amount.indexOf('.');
@@ -31,6 +31,9 @@ public class Amount {
             if ((amount.length() - dotIndex) != 3) {
                 amount += "0";
             }
+        }
+        while (amount.charAt(0) == '0') {
+            amount = amount.substring(1);
         }
         return amount;
     }

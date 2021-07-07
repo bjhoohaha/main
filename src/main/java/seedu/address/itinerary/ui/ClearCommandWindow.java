@@ -2,6 +2,8 @@ package seedu.address.itinerary.ui;
 
 import java.util.logging.Logger;
 
+import org.controlsfx.control.Notifications;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,8 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
+
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.itinerary.logic.ItineraryLogic;
 import seedu.address.ui.UiPart;
 
 /**
@@ -34,14 +37,16 @@ public class ClearCommandWindow extends UiPart<Stage> {
     @FXML
     private Button proceed;
 
+    private ItineraryLogic itineraryLogic;
+
     /**
      * Creates a new ClearWindow.
      *
      * @param root Stage to use as the root of the ClearWindow.
      */
-    public ClearCommandWindow(Stage root) {
+    public ClearCommandWindow(Stage root, ItineraryLogic itineraryLogic) {
         super(FXML, root);
-
+        this.itineraryLogic = itineraryLogic;
         String warning = "Warning! This action CANNOT be undone. Are you sure you want to proceed?";
 
         clearMessage.setText(warning);
@@ -51,8 +56,8 @@ public class ClearCommandWindow extends UiPart<Stage> {
     /**
      * Creates a new ClearWindow.
      */
-    public ClearCommandWindow() {
-        this(new Stage());
+    public ClearCommandWindow(ItineraryLogic itineraryLogic) {
+        this(new Stage(), itineraryLogic);
     }
 
     /**
@@ -82,6 +87,7 @@ public class ClearCommandWindow extends UiPart<Stage> {
     @FXML
     public void handleClear() {
         getRoot().hide();
+        itineraryLogic.clearModel();
         notification(Pos.CENTER, graphic, clearSuccess);
         notificationBuilder.showInformation();
     }

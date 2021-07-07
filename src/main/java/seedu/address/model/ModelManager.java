@@ -1,10 +1,7 @@
 package seedu.address.model;
 
-import java.util.function.Supplier;
 import java.util.logging.Logger;
 
-import seedu.address.achievements.model.StatisticsModel;
-import seedu.address.achievements.model.StatisticsModelManager;
 import seedu.address.address.model.AddressBookModel;
 import seedu.address.commons.core.LogsCenter;
 
@@ -31,16 +28,6 @@ public class ModelManager implements Model {
     @Override
     public UserPrefsModel getUserPrefsModel() {
         return userPrefsModel;
-    }
-
-    @Override
-    public Supplier<StatisticsModel> statisticsModelSupplier() {
-        return new Supplier<StatisticsModel>() {
-            @Override
-            public StatisticsModel get() {
-                return new StatisticsModelManager(addressBookModel);
-            }
-        };
     }
 
 }

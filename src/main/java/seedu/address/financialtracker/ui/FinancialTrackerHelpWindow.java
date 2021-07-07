@@ -2,13 +2,16 @@ package seedu.address.financialtracker.ui;
 
 import java.util.logging.Logger;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.ui.PageManager;
 import seedu.address.ui.UiPart;
 
 /**
@@ -23,15 +26,18 @@ public class FinancialTrackerHelpWindow extends UiPart<Stage> {
     private static final String HELP = "help";
     private static final String GOTO_MESSAGE = "goto PAGE";
     private static final String EXIT_MESSAGE = "exit";
-    private static final String ADD_MESSAGE = "add a/AMOUNT d/DESCRIPTION t/[TYPE_OF_EXPENDITURE] "
+    private static final String ADD_MESSAGE = "add a/AMOUNT d/DESCRIPTION t/TYPE_OF_EXPENDITURE "
             + "[date/DATE] [time/TIME]";
     private static final String DELETE_MESSAGE = "delete INDEX";
-    private static final String EDIT_MESSAGE = "edit INDEX a/AMOUNT d/DESCRIPTION t/[TYPE_OF_EXPENDITURE] "
+    private static final String EDIT_MESSAGE = "edit INDEX [a/AMOUNT] [d/DESCRIPTION] [t/TYPE_OF_EXPENDITURE] "
             + "[date/DATE] [time/TIME]";
     private static final String SORT_MESSAGE = "sort amount";
     private static final String SWITCH_MESSAGE = "switch Japan";
+    private static final String CLEAR_MESSAGE = "clear";
+    private static final String UNDO_MESSAGE = "undo";
     private static final Logger logger = LogsCenter.getLogger(FinancialTrackerHelpWindow.class);
     private static final String FXML = "FinancialTrackerHelpWindow.fxml";
+
 
     @FXML
     private Button copyButton;
@@ -64,6 +70,12 @@ public class FinancialTrackerHelpWindow extends UiPart<Stage> {
     private Button switchCommand;
 
     @FXML
+    private Button clearCommand;
+
+    @FXML
+    private Button undoCommand;
+
+    @FXML
     private Label helpMessage;
 
     /**
@@ -74,6 +86,23 @@ public class FinancialTrackerHelpWindow extends UiPart<Stage> {
     private FinancialTrackerHelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+
+        // Adapted from pohlinwei
+        getRoot().focusedProperty().addListener(((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                PauseTransition delay = new PauseTransition(Duration.seconds(0.5));
+                delay.setOnFinished(event -> getRoot().hide());
+                delay.play();
+            }
+        }));
+
+        getRoot().setOnShowing(event -> {
+            getRoot().setHeight(494);
+            getRoot().setWidth(582);
+            // centralise
+            getRoot().setX(PageManager.getXPosition() - 291);
+            getRoot().setY(PageManager.getYPosition() - 247);
+        });
     }
 
     /**
@@ -151,7 +180,7 @@ public class FinancialTrackerHelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Copies the summary command template to the clipboard.
+     * Copies the help command template to the clipboard.
      */
     @FXML
     private void copyHelp() {
@@ -206,7 +235,7 @@ public class FinancialTrackerHelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Copies the delete command template to the clipboard.
+     * Copies the edit command template to the clipboard.
      */
     @FXML
     private void copyEdit() {
@@ -235,6 +264,28 @@ public class FinancialTrackerHelpWindow extends UiPart<Stage> {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
         url.putString(SWITCH_MESSAGE);
+        clipboard.setContent(url);
+    }
+
+    /**
+     * Copies the clear command template to the clipboard.
+     */
+    @FXML
+    private void copyClear() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(CLEAR_MESSAGE);
+        clipboard.setContent(url);
+    }
+
+    /**
+     * Copies the undo command template to the clipboard.
+     */
+    @FXML
+    private void copyUndo() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(UNDO_MESSAGE);
         clipboard.setContent(url);
     }
 }

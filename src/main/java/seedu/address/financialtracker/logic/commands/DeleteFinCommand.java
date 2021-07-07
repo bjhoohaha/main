@@ -10,14 +10,16 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
- * delete a financial expense, command for Financial Tracker.
+ * Deletes a financial expense, command for Financial Tracker.
  */
 public class DeleteFinCommand extends Command<Model> {
 
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_SUCCESS = "Your expense has been deleted";
     public static final String MESSAGE_USAGE = ": delete an expense.\n"
-            + "e.g. delete [index]";
+            + "Parameters: delete [index]\n"
+            + "Example: delete 1\n"
+            + "Note: index has to be a positive number!";
     public static final String MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX = "The expense index provided is invalid";
     private final Index index;
 
@@ -38,5 +40,12 @@ public class DeleteFinCommand extends Command<Model> {
         }
         model.deleteExpense(index.getOneBased());
         return new CommandResult(MESSAGE_SUCCESS, false, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteFinCommand // instanceof handles nulls
+                && index.equals(((DeleteFinCommand) other).index));
     }
 }

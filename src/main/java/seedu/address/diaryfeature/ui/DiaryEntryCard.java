@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
 import seedu.address.diaryfeature.model.diaryEntry.DiaryEntry;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -45,7 +45,6 @@ public class DiaryEntryCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText("TITLE: " + entry.getTitle().toString());
         date.setText("DATE: " + entry.getDate().toString());
-        System.out.println(entry.getPlace());
         place.setText("PLACE: " + entry.getPlace());
         memory.setText("MEMORY: " + entry.getMemory());
     }

@@ -12,7 +12,8 @@ public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should only contain numerals and be written in the DDMMYYYY format.\n"
                     + "Valid formats: 25102019\n"
-                    + "Invalid formats: 25/10/2019 or 25-10-2019 or others..";
+                    + "Invalid formats: 25/10/2019 or 25-10-2019 or others..\n"
+                    + "Note: Year range is only valid from 1000 to 3999";
 
     /*
      * The first character of the description must not be a whitespace,
@@ -26,6 +27,7 @@ public class Date {
 
     public Date(String date) {
         requireNonNull(date);
+        assert isValidDate(date) : "date format should be always correct";
         try {
             this.valueToCompare = sdfDate.parse(date);
         } catch (ParseException e) {
@@ -52,16 +54,21 @@ public class Date {
                 } else {
                     return numYear % 4 == 0;
                 }
+            } else if ((day.equals("30") || day.equals("31")) && month.equals("02")) {
+                return false;
+            } else if (day.equals("31") && (month.equals("04") || month.equals("06")
+                    || month.equals("09") || month.equals("11"))) {
+                return false;
             } else {
-                return (!day.equals("30") && !day.equals("31")) || !month.equals("02");
+                return true;
             }
         }
         return false;
     }
 
     /**
-     * Format the date in the event to dd/MM/yyyy.
-     * @param date attribute in the given event.
+     * Formats the date in the expense to dd/MM/yyyy.
+     * @param date attribute in the given expense.
      * @return formatted date based on dd/MM/yyyy.
      */
     private String formatDate(String date) {

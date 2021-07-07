@@ -1,8 +1,10 @@
 package seedu.address.calendar.model.date;
 
 import seedu.address.calendar.model.event.EventType;
-import seedu.address.calendar.model.util.DateUtil;
 
+/**
+ * Represents a view only day.
+ */
 public class ViewOnlyDay {
     private DayOfWeek dayOfWeek;
     private int dayOfMonth;
@@ -20,6 +22,11 @@ public class ViewOnlyDay {
         return new ViewOnlyDay(day.getDayOfWeek(), day.getDayOfMonth());
     }
 
+    /**
+     * Adds the specified event type to {@code this}.
+     *
+     * @param eventType The event type to be added
+     */
     public void addEventType(EventType eventType) {
         switch (eventType) {
         case COMMITMENT:
@@ -41,17 +48,13 @@ public class ViewOnlyDay {
         return dayOfMonth;
     }
 
-    public DayOfWeek getDayOfWeek() {
-        return dayOfWeek;
-    }
-
     /**
      * Returns day of week as a meaningful numerical value that is zero-based.
      *
      * @return day of week as a meaningful numerical value that is zero-based
      */
     public int getDayOfWeekZeroIndex() {
-        return DateUtil.getNumericalVal(dayOfWeek);
+        return dayOfWeek.getNumericalVal();
     }
 
     public boolean hasCommitment() {

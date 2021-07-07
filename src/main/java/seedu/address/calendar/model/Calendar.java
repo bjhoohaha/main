@@ -1,5 +1,11 @@
 package seedu.address.calendar.model;
 
+import java.nio.file.NoSuchFileException;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 import seedu.address.calendar.model.date.Date;
 import seedu.address.calendar.model.date.MonthOfYear;
 import seedu.address.calendar.model.date.ViewOnlyMonth;
@@ -13,17 +19,18 @@ import seedu.address.calendar.model.util.CalendarStatistics;
 import seedu.address.calendar.model.util.DateUtil;
 import seedu.address.calendar.model.util.exceptions.NoVacationException;
 
-import java.nio.file.NoSuchFileException;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.stream.Stream;
-
+/**
+ * Represents a calendar. The calendar is aware of what has to be shown to the user graphically and has access to
+ * manipulating the user's events.
+ */
 public class Calendar {
     private ViewOnlyMonth viewOnlyMonth;
     private boolean hasVisibleUpdates;
     private EventManager events;
 
+    /**
+     * Creates a {@code Calendar}.
+     */
     public Calendar() {
         java.util.Calendar currentDate = java.util.Calendar.getInstance();
 
@@ -37,20 +44,36 @@ public class Calendar {
         events = new EventManager();
     }
 
+    /**
+     * Gets information about the month that is currently being shown.
+     * @return
+     */
     public ViewOnlyMonth getMonth() {
         return ViewOnlyMonth.copy(viewOnlyMonth);
     }
 
     /**
-     * Adds an event to the calendar
+     * Adds an event to the calendar and switches the month view to that of the event's start date.
+     *
+     * @param event The event to add to {@code this}
+     * @return {@code true} if the operation is successful
+     * @throws DuplicateEventException if the specified already exists
+     * @throws ClashException if the operation could lead to conflicting schedules
      */
-
     public boolean addEvent(Event event) throws DuplicateEventException, ClashException {
         events.add(event);
         updateMonthView(event);
         return true;
     }
 
+    /**
+     * Adds an event to the calendar and switches the month view to that of the event's start date.
+     * This operation ignores any potential conflicts in schedule.
+     *
+     * @param event The event to add to {@code this}
+     * @return {@code true} if the operation is successful
+     * @throws DuplicateEventException if the specified already exists
+     */
     public boolean addIgnoreClash(Event event) throws DuplicateEventException {
         events.addIgnoreClash(event);
         updateMonthView(event);
@@ -58,7 +81,11 @@ public class Calendar {
     }
 
     /**
-     * Deletes an event from the calendar
+     * Deletes an event from {@code this}.
+     *
+     * @param event The specified event to be deleted
+     * @return {@code true} if the operation is successful
+     * @throws NoSuchElementException if the specified event cannot be found in {@code this}
      */
     public boolean deleteEvent(Event event) throws NoSuchElementException {
         events.remove(event);
@@ -66,6 +93,11 @@ public class Calendar {
         return true;
     }
 
+    /**
+     * Lists all events in {@code this}.
+     *
+     * @return A {@code String} which contains information about all events in {@code this}
+     */
     public String listAll() {
         return events.listAllAsString()
                 .stream()
@@ -73,46 +105,77 @@ public class Calendar {
                 .trim();
     }
 
+    /**
+     * Lists all events that happen during the specified event query.
+     *
+     * @param eventQuery The specified event query
+     * @return A {@code String} which contains information about all events that happen during {@code eventQuery}
+     */
     public String list(EventQuery eventQuery) {
+        updateMonthView(eventQuery);
         return events.listRelevantAsString(eventQuery)
                 .stream()
                 .reduce("", (prev, curr) -> prev + "\n" + curr)
                 .trim();
     }
 
-    public Stream<Event> getEvents(EventQuery eventQuery) {
-        return events.getEvents(eventQuery);
-    }
-
     public Stream<Event> getEventsAtSpecificTime(EventQuery eventQuery) {
         return events.getEventsAtSpecificTime(eventQuery);
     }
 
-    // todo: update response message to indicate that the view has also been updated
-
+    /**
+     * Checks if the user is available at the specified period of time.
+     *
+     * @param eventQuery The specified period of time
+     * @return {@code true} if the user is available at the specified period of time
+     */
     public boolean isAvailable(EventQuery eventQuery) {
         boolean isAvailable = events.isAvailable(eventQuery);
         updateMonthView(eventQuery);
         return isAvailable;
     }
 
+    /**
+     * Suggests user periods of times when he/she is free.
+     *
+     * @param eventQuery The period of time of interest
+     * @return Suggestions for the user
+     */
     public String suggest(EventQuery eventQuery) {
         String suggestions = events.suggest(eventQuery);
         updateMonthView(eventQuery);
         return suggestions;
     }
 
+    /**
+     * Suggests user periods of times when he/she is free and only returns those that meets the minimum time period.
+     *
+     * @param eventQuery The period of time of interest
+     * @param minPeriod The minimum period of time
+     * @return Suggestions for the user
+     */
     public String suggest(EventQuery eventQuery, int minPeriod) {
         String suggestions = events.suggest(eventQuery, minPeriod);
         updateMonthView(eventQuery);
         return suggestions;
     }
 
+    /**
+     * Gets a read-only calendar.
+     *
+     * @return A read-only calendar
+     */
     public ReadOnlyCalendar getCalendar() {
         List<Event> eventsCopy = events.asList();
         return new ReadOnlyCalendar(eventsCopy);
     }
 
+    /**
+     * Updates calendar using a read-only calendar.
+     *
+     * @param readOnlyCalendar A read-only calendar
+     * @throws NoSuchFileException If the file cannot be found
+     */
     public void updateCalendar(Optional<ReadOnlyCalendar> readOnlyCalendar) throws NoSuchFileException {
         try {
             List<Event> eventList = readOnlyCalendar.get().getEventList();
@@ -136,6 +199,13 @@ public class Calendar {
         updateMonthView(currentMonth, currentYear);
     }
 
+    /**
+     * Adds event from the read-only calendar.
+     *
+     * @param event The event to be added
+     * @throws DuplicateEventException If there are duplicated events detected
+     * @throws NoSuchElementException If there is no such element
+     */
     private void addEventFromReadable(Event event) throws DuplicateEventException, NoSuchElementException {
         try {
             events.add(event);
@@ -145,7 +215,7 @@ public class Calendar {
     }
 
     private void updateMonthView(Event event) {
-        EventQuery eventQuery = Event.asEventQuery(event);
+        EventQuery eventQuery = event.asEventQuery();
         updateMonthView(eventQuery);
     }
 
@@ -154,6 +224,12 @@ public class Calendar {
         updateMonthView(updatedViewOnlyMonth);
     }
 
+    /**
+     * Updates month view with the specified month and year.
+     *
+     * @param month The specified month
+     * @param year The specified year
+     */
     public void updateMonthView(MonthOfYear month, Year year) {
         Date firstDateOfMonth = DateUtil.getFirstDateInMonth(month, year);
         Date lastDateOfMonth = DateUtil.getLastDateInMonth(month, year);
@@ -229,19 +305,22 @@ public class Calendar {
      * Creates a statistics object that contains statistics of {@code this} calendar.
      */
     private class CalendarStatisticsManager implements CalendarStatistics {
-
+        @Override
         public long getNumDaysVacation() {
             return Calendar.this.getNumDaysVacation();
         }
 
+        @Override
         public long getNumDaysTrip() {
             return Calendar.this.getNumDaysTrip();
         }
 
+        @Override
         public long getNumTrip() {
             return Calendar.this.getNumTrip();
         }
 
+        @Override
         public double getPercentageTrip() throws NoVacationException {
             return Calendar.this.getPercentageTrip();
         }

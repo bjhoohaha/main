@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.financialtracker.model.Model;
 import seedu.address.financialtracker.model.expense.Amount;
 import seedu.address.financialtracker.model.expense.Country;
@@ -26,7 +27,7 @@ class AddFinCommandTest {
     @Test
     public void execute_expenseAcceptedByModel_addSuccessful() throws Exception {
 
-        Expense ep1 = new Expense(new Date("271016"), new Time("1720"), new Amount("4"), new Description("breakfast"),
+        Expense ep1 = new Expense(new Date("27102016"), new Time("1720"), new Amount("4"), new Description("breakfast"),
                 new Type("Food"), new Country("Singapore"));
         Model model = new Model();
 
@@ -36,9 +37,9 @@ class AddFinCommandTest {
 
     @Test
     public void equals() {
-        Expense ep1 = new Expense(new Date("271016"), new Time("1720"), new Amount("4"), new Description("breakfast"),
+        Expense ep1 = new Expense(new Date("27102016"), new Time("1720"), new Amount("4"), new Description("breakfast"),
                 new Type("Food"), new Country("Singapore"));
-        Expense ep2 = new Expense(new Date("271019"), new Time("1520"), new Amount("5"), new Description("breakfast"),
+        Expense ep2 = new Expense(new Date("27102019"), new Time("1520"), new Amount("5"), new Description("breakfast"),
                 new Type("Food"), new Country("Singapore"));
         AddFinCommand addEp1Command = new AddFinCommand(ep1);
         AddFinCommand addEp2Command = new AddFinCommand(ep2);
